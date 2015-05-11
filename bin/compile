@@ -28,6 +28,13 @@ unset GIT_DIR
 # Provide hook to deal with errors
 trap build_failed ERR
 
+####### if there is a target.tar.gz un taring it
+
+if [ "$build_dir/target.tar.gz" ]; then
+  tar xzf $build_dir/target.tar.gz -C $build_dir
+  rm $build_dir/target.tar.gz
+fi
+
 ####### Determine current state
 
 head "Reading application state"
